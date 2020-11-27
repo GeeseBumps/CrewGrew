@@ -32,5 +32,6 @@
 		echo "</TR>";	
 		echo "</TR>";	
    }
+   echo "HI"; 
 
 ?>
