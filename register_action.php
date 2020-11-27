@@ -18,17 +18,18 @@ $course=$_POST[course];
 $gender=$_POST[gender];
 $interests=$_POST[interests];
 $intro=$_POST[intro];
-
+$age=$_POST[age];
 $date = date('Y-m-d H:i:s');
-
+echo age;
 //입력받은 데이터를 DB에 저장
-$result = mysqli_query($connect, "SELECT * FROM univ WHERE UnivName='$univ'");
+$result = mysqli_query($connect, "SELECT * FROM univ WHERE UnivName='$univ';");
 $row = mysqli_fetch_array($result);
 $univID = $row['UnivID'];
+echo $age;
 $query = "INSERT INTO student (StdID, StdName, AdmissionYear, AdmissionSemester, Course, Gender,
- Major, Interest, Email, Phone, Introduce, student_UnivID, account, password) values ('$id', '$name', '$year', '$sem', '$course', '$gender',
- '$major', '$interests', '$email', '$phone', '$intro', '$univID', '$account', '$pw')";
-$result = $connect->query($query);
+ Major, Interest, Email, Phone, Introduce, student_UnivID, account, password, age) values ($id, '".$name."', '".$year."', '".$sem."', '".$course."', '".$gender."',
+ '".$major."', '".$interests."', '".$email."', '".$phone."', '".$intro."', $univID, '".$account."', '".$pw."', $age);";
+$result = mysqli_query($connect, $query);
 
 //저장이 됬다면 (result = true) 가입 완료
 if($result) {
@@ -42,6 +43,7 @@ if($result) {
 else{
 ?>
 <script>alert("fail");</script>
-<?php   }
+<?php   
+echo mysqli_error($connect); }
 mysqli_close($connect);
 ?>

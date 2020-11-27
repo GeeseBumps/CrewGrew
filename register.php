@@ -66,6 +66,10 @@
       </td>
     </tr>
     <tr bgcolor="white">
+      <td>&nbsp;Age</td>
+      <td><input type="text" name="age" value="" size='5'></td>
+    </tr>
+    <tr bgcolor="white">
       <td>&nbsp;Major</td>
       <td><select name="major" size="1">
         <option value="selected">Select Course</option>

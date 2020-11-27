@@ -6,7 +6,7 @@ $connect = mysqli_connect($servername, $username, $password, $dbname) or die("My
 $id=$_POST['id'];
 $pw=$_POST['pw'];
 
-$query = "select * from student where StdID='$id'";
+$query = "select * from student where account='$id';";
 $result = $connect->query($query);
 
 if(mysqli_num_rows($result)==1) {
