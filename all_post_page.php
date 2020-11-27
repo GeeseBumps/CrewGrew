@@ -11,7 +11,7 @@
 	echo "<br>";
 	echo "<FORM METHOD='POST' ACTION='post_main.php'>";
 	echo "<input type='hidden' name='PPID' value=1></input>";
-	echo "<input type='image'  src='didimdol.jpg' width='500' height='500' ></input>";
+	echo "<input type='image' src='didimdol.jpg' width='500' height='500' ></input>";
 
 	echo "</form>";
 	echo "</body>";

@@ -247,7 +247,7 @@ DROP TABLE IF EXISTS `ppcomment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ppcomment` (
-  `PCID` int NOT NULL,
+  `PCID` int NOT NULL AUTO_INCREMENT,
   `Content` varchar(45) NOT NULL,
   `Date` varchar(45) NOT NULL,
   `ppcomment_PPID` int NOT NULL,

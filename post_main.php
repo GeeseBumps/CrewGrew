@@ -32,9 +32,11 @@
 
 	echo "<table align='center' border=1 width = '400'  >";
 	echo "<TR>";
+	echo "<TD> 제목</td>";
 	echo "<TD>".$PostTitle.  "</td>";
 	echo "</tr>";
 	echo "<tr>";
+	echo "<TD> 내용</td>";
 	echo "<td>".$PostContent. "</td>";
 	echo "</tr>";
 	echo "</table>";

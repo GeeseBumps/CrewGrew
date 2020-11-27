@@ -9,14 +9,18 @@
 	그리고, 이전 post_main에서 content를 받아서 db에 저장 하고, 저장된 db를 다시 같은 post id인 저장된 데이터를 모두 select해서 표로 테이블로 만들기  */
 	$Content=$_POST['Content'];
 	$PPID=$_POST['PPID'];
-	$ID=$_session['userid'];
+	$ID=$_SESSION['userid'];
 	$ClubID=$_POST['ClubID'];	
 	
 	
 	
-	
-	$sql="insert into ppcomment(Content,Date,ppcomment_PPID,ppcomment_ClubID,ppcomment_StdID) values($Content,date('Y-m-d', time()),$PPID,$Content,$ClubID,$ID)";
+	$date=date('Y-m-d', time());
+	$sql="insert into ppcomment(Content,Date,ppcomment_PPID,ppcomment_ClubID,ppcomment_StdID) values('$Content','$date','$PPID','$ClubID',(select StdID from student where account='$ID' ))";
 	$ret = mysqli_query($con, $sql);
+	if ($ret==false){
+		die("DB is failed");
+	
+	}
 	$sql1="select Content,Date,ppcomment_StdID from ppcomment ORDER BY Date DESC";
 	$ret1=mysqli_query($con, $sql1);
 	if($ret1) {	   
