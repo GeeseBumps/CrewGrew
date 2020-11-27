@@ -1,10 +1,13 @@
+<META http-equiv="content-type" content="text/html; charset=utf-8">
 <?php
 	
-	$PPID=1;
+	$idx='PPID';
+	$PPID=$_POST[$idx];
+	
 	$servername = "localhost:3306";
 	$username = "root";
 	$password = "1234";	
-	$dbname = "clubmanagement";
+	$dbname = "clubmangement";
 	$con = mysqli_connect($servername, $username, $password, $dbname) or die("MySQL Connection failed!!");
 	$sql ="select * from promotion_post WHERE PPID = 1";
 	
@@ -21,37 +24,31 @@
 	$PostContent=$row['PostContent'];
 	$PostImg=$row['PostImg'];
 	$pp_ClubID=$row['pp_ClubID'];
-?>
-<HTML>
-<HEAD>
-<META http-equiv="content-type" content="text/html; charset=utf-8">
-</HEAD>
-<BODY align="center">
-<H2> &nbsp; modifying customer information </H2>
+	
+	
+	echo "<HTML>";
+	echo "<BODY align='center'>";
+	echo "<H2> &nbsp; modifying customer information </H2>";
 
-<table align="center"  >
-<TR>
-<TD> <?php echo $PostTitle ?> </td>
-</tr>
-<tr>
-<td><?php echo $PostContent ?> </td>
-</tr>
-</table>
-<br>
-<button type="button" onclick="location.href='동아리신청 공간' ">지금 신청하기</button></br>
-<button type="button" onclick="location.href='메인 페이지' ">뒤로 가기</button></br>
-<br>
-<FORM METHOD="post"  ACTION="post_comment.php">	
-<input type="text" name="Content" VALUE="댓글을 적어주세요" READONLY size="10" maxlength="20"></input><br>
-<input type="hidden",name="PPID",VALUE=<?php $PPID ?>;></input><Br>
-<input type="hidden",name="ClubID",VALUE=<?php $pp_ClubID ?>;></input><Br>
+	echo "<table align='center' border=1 width = '400'  >";
+	echo "<TR>";
+	echo "<TD>".$PostTitle.  "</td>";
+	echo "</tr>";
+	echo "<tr>";
+	echo "<td>".$PostContent. "</td>";
+	echo "</tr>";
+	echo "</table>";
+	echo "<br>";
+	echo "<button type='button' onclick='location.href='동아리신청 공간' '>지금 신청하기</button></br>";
+	echo "<button type='button' onclick='location.href='메인 페이지' '>뒤로 가기</button></br>";
+	echo "<br>";
+	echo "<FORM METHOD='POST'  ACTION='post_comment.php'>";	
+	echo "<input type='text' name='Content' VALUE='댓글을 적어주세요'  maxlength='20'></input><br>";
+	echo "<input type='hidden' name='PPID' VALUE=$PPID ></input><Br>";
+	echo "<input type='hidden' name='ClubID' VALUE=$pp_ClubID></input><Br>";
 
-<input type="submit" value="Submit">
-</form>
-</body>
-</html>
-
-
-
-
-
+	echo "<input type='submit' value='Submit'>";
+	echo "</form>";
+	echo "</body>";
+	echo "</HTML>";
+	?>

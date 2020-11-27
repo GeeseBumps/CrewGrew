@@ -74,6 +74,7 @@ CREATE TABLE `application` (
 
 LOCK TABLES `application` WRITE;
 /*!40000 ALTER TABLE `application` DISABLE KEYS */;
+INSERT INTO `application` VALUES (120170240,'2020-11-27 00:00:00','fsfa','fasdfasdfa','sdfasdf','','',20170240,1);
 /*!40000 ALTER TABLE `application` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,14 +219,13 @@ CREATE TABLE `memberlist` (
   `RegistrationYear` varchar(45) NOT NULL,
   `RegistrationSemester` varchar(45) NOT NULL,
   `isActive` varchar(45) NOT NULL,
-  `application_ApplyID` int DEFAULT NULL,
+  `application_ApplyID` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`memberlist_ClubID`,`memberlist_StdID`),
   KEY `fk_club_has_student_student1_idx` (`memberlist_StdID`),
   KEY `fk_club_has_student_club_idx` (`memberlist_ClubID`),
   KEY `fk_memberlist_application1_idx` (`application_ApplyID`),
   CONSTRAINT `fk_club_has_student_club` FOREIGN KEY (`memberlist_ClubID`) REFERENCES `club` (`ClubID`),
-  CONSTRAINT `fk_club_has_student_student1` FOREIGN KEY (`memberlist_StdID`) REFERENCES `student` (`StdID`),
-  CONSTRAINT `fk_memberlist_application1` FOREIGN KEY (`application_ApplyID`) REFERENCES `application` (`ApplyID`)
+  CONSTRAINT `fk_club_has_student_student1` FOREIGN KEY (`memberlist_StdID`) REFERENCES `student` (`StdID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -247,13 +247,13 @@ DROP TABLE IF EXISTS `ppcomment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ppcomment` (
-  `PPID` int NOT NULL,
+  `PCID` int NOT NULL,
   `Content` varchar(45) NOT NULL,
   `Date` varchar(45) NOT NULL,
   `ppcomment_PPID` int NOT NULL,
   `ppcomment_ClubID` int DEFAULT NULL,
   `ppcomment_StdID` int DEFAULT NULL,
-  PRIMARY KEY (`PPID`),
+  PRIMARY KEY (`PCID`),
   KEY `fk_clubpost_comment_copy1_promotion_post1_idx` (`ppcomment_PPID`),
   KEY `fk_promotion_post_comment_club1_idx` (`ppcomment_ClubID`),
   KEY `fk_promotion_post_comment_student1_idx` (`ppcomment_StdID`),
@@ -377,4 +377,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-27 20:35:17
+-- Dump completed on 2020-11-28  0:32:42
