@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `clubmangement` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `clubmangement`;
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for macos10.15 (x86_64)
 --
 -- Host: localhost    Database: clubmangement
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	8.0.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `advertiser`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `advertiser` (
-  `AdvID` int(11) NOT NULL AUTO_INCREMENT,
+  `AdvID` int NOT NULL AUTO_INCREMENT,
   `Type` varchar(45) NOT NULL,
   `AdvName` varchar(45) NOT NULL,
   `Phone` varchar(45) NOT NULL,
@@ -51,15 +51,15 @@ DROP TABLE IF EXISTS `application`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `application` (
-  `ApplyID` int(11) NOT NULL,
+  `ApplyID` int NOT NULL,
   `ApplyDate` datetime NOT NULL,
   `Q1ans` varchar(1000) NOT NULL,
   `Q2ans` varchar(1000) NOT NULL,
   `Q3ans` varchar(1000) NOT NULL,
   `Q4ans` varchar(1000) DEFAULT NULL,
   `Q5ans` varchar(1000) DEFAULT NULL,
-  `application_StdID` int(11) NOT NULL,
-  `application_ClubID` int(11) NOT NULL,
+  `application_StdID` int NOT NULL,
+  `application_ClubID` int NOT NULL,
   PRIMARY KEY (`ApplyID`),
   KEY `fk_application_student1_idx` (`application_StdID`),
   KEY `fk_application_club1_idx` (`application_ClubID`),
@@ -85,14 +85,14 @@ DROP TABLE IF EXISTS `club`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `club` (
-  `ClubID` int(11) NOT NULL AUTO_INCREMENT,
+  `ClubID` int NOT NULL AUTO_INCREMENT,
   `ClubName` varchar(45) NOT NULL,
   `ClubLogo` blob,
   `EstYear` varchar(45) NOT NULL,
   `Field` varchar(45) NOT NULL,
   `Introduce` varchar(150) NOT NULL,
-  `form_FormID` int(11) NOT NULL,
-  `club_UnivID` int(11) NOT NULL,
+  `form_FormID` int NOT NULL,
+  `club_UnivID` int NOT NULL,
   PRIMARY KEY (`ClubID`),
   KEY `fk_club_univ1_idx` (`club_UnivID`),
   CONSTRAINT `fk_club_univ1` FOREIGN KEY (`club_UnivID`) REFERENCES `univ` (`UnivID`)
@@ -116,14 +116,14 @@ DROP TABLE IF EXISTS `clubpage_post`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clubpage_post` (
-  `CPID` int(11) NOT NULL AUTO_INCREMENT,
+  `CPID` int NOT NULL AUTO_INCREMENT,
   `PostDate` datetime NOT NULL,
   `PostTitle` varchar(100) NOT NULL,
   `PostContent` varchar(1000) NOT NULL,
   `PostImg` blob,
-  `LikeNum` int(11) NOT NULL DEFAULT '0',
-  `cp_StdID` int(11) NOT NULL,
-  `cp_ClubID` int(11) NOT NULL,
+  `LikeNum` int NOT NULL DEFAULT '0',
+  `cp_StdID` int NOT NULL,
+  `cp_ClubID` int NOT NULL,
   PRIMARY KEY (`CPID`),
   KEY `fk_clubpage_post_memberlist1_idx` (`cp_StdID`),
   KEY `fk_clubpage_post_club1_idx` (`cp_ClubID`),
@@ -149,12 +149,12 @@ DROP TABLE IF EXISTS `cpcomment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cpcomment` (
-  `CCID` int(11) NOT NULL,
+  `CCID` int NOT NULL,
   `Content` varchar(45) NOT NULL,
   `Date` varchar(45) NOT NULL,
-  `cpcomment_ClubID` int(11) NOT NULL,
-  `cpcomment_StdID` int(11) NOT NULL,
-  `cpcomment_CPID` int(11) NOT NULL,
+  `cpcomment_ClubID` int NOT NULL,
+  `cpcomment_StdID` int NOT NULL,
+  `cpcomment_CPID` int NOT NULL,
   PRIMARY KEY (`CCID`),
   KEY `fk_club_post_comment_memberlist1_idx` (`cpcomment_ClubID`,`cpcomment_StdID`),
   KEY `fk_club_post_comment_clubpage_post1_idx` (`cpcomment_CPID`),
@@ -180,13 +180,13 @@ DROP TABLE IF EXISTS `form`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `form` (
-  `FormID` int(11) NOT NULL,
+  `FormID` int NOT NULL,
   `Q1` varchar(200) NOT NULL,
   `Q2` varchar(200) NOT NULL,
   `Q3` varchar(200) NOT NULL,
   `Q4` varchar(200) DEFAULT NULL,
   `Q5` varchar(200) DEFAULT NULL,
-  `form_ClubID` int(11) NOT NULL,
+  `form_ClubID` int NOT NULL,
   PRIMARY KEY (`FormID`),
   KEY `fk_form_club1_idx` (`form_ClubID`),
   CONSTRAINT `fk_form_club1` FOREIGN KEY (`form_ClubID`) REFERENCES `club` (`ClubID`)
@@ -210,13 +210,13 @@ DROP TABLE IF EXISTS `memberlist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `memberlist` (
-  `memberlist_ClubID` int(11) NOT NULL,
-  `memberlist_StdID` int(11) NOT NULL,
+  `memberlist_ClubID` int NOT NULL,
+  `memberlist_StdID` int NOT NULL,
   `Position` varchar(45) NOT NULL,
   `RegistrationYear` varchar(45) NOT NULL,
   `RegistrationSemester` varchar(45) NOT NULL,
   `Active` varchar(45) NOT NULL,
-  `application_ApplyID` int(11) NOT NULL,
+  `application_ApplyID` int NOT NULL,
   PRIMARY KEY (`memberlist_ClubID`,`memberlist_StdID`),
   KEY `fk_club_has_student_student1_idx` (`memberlist_StdID`),
   KEY `fk_club_has_student_club_idx` (`memberlist_ClubID`),
@@ -244,12 +244,12 @@ DROP TABLE IF EXISTS `ppcomment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ppcomment` (
-  `PPID` int(11) NOT NULL,
+  `PPID` int NOT NULL,
   `Content` varchar(45) NOT NULL,
   `Date` varchar(45) NOT NULL,
-  `ppcomment_PPID` int(11) NOT NULL,
-  `ppcomment_ClubID` int(11) DEFAULT NULL,
-  `ppcomment_StdID` int(11) DEFAULT NULL,
+  `ppcomment_PPID` int NOT NULL,
+  `ppcomment_ClubID` int DEFAULT NULL,
+  `ppcomment_StdID` int DEFAULT NULL,
   PRIMARY KEY (`PPID`),
   KEY `fk_clubpost_comment_copy1_promotion_post1_idx` (`ppcomment_PPID`),
   KEY `fk_promotion_post_comment_club1_idx` (`ppcomment_ClubID`),
@@ -277,15 +277,15 @@ DROP TABLE IF EXISTS `promotion_post`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `promotion_post` (
-  `PPID` int(11) NOT NULL AUTO_INCREMENT,
+  `PPID` int NOT NULL AUTO_INCREMENT,
   `PostDate` datetime NOT NULL,
   `PostTitle` varchar(100) NOT NULL,
   `PostContent` varchar(1000) NOT NULL,
   `PostImg` blob,
-  `LikeNum` int(11) NOT NULL DEFAULT '0',
-  `club_form_FormID` int(11) NOT NULL,
-  `club_univ_UnivID` int(11) NOT NULL,
-  `pp_ClubID` int(11) NOT NULL,
+  `LikeNum` int NOT NULL DEFAULT '0',
+  `club_form_FormID` int NOT NULL,
+  `club_univ_UnivID` int NOT NULL,
+  `pp_ClubID` int NOT NULL,
   PRIMARY KEY (`PPID`),
   KEY `fk_promotion_post_club1_idx` (`pp_ClubID`),
   CONSTRAINT `fk_promotion_post_club1` FOREIGN KEY (`pp_ClubID`) REFERENCES `club` (`ClubID`)
@@ -309,22 +309,22 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `student` (
-  `StdID` int(11) NOT NULL,
+  `StdID` int NOT NULL,
   `StdName` varchar(45) NOT NULL,
-  `AdmissionYear` int(11) NOT NULL,
-  `Admission Semester` varchar(45) NOT NULL,
+  `AdmissionYear` int NOT NULL,
+  `AdmissionSemester` varchar(45) NOT NULL,
   `Course` varchar(45) NOT NULL,
   `Gender` varchar(45) NOT NULL,
-  `Age` int(11) NOT NULL,
+  `Age` int NOT NULL,
   `Major` varchar(45) NOT NULL,
   `Interest` varchar(45) DEFAULT NULL,
   `Email` varchar(45) NOT NULL,
   `Phone` varchar(45) NOT NULL,
   `Introduce` varchar(100) DEFAULT NULL,
-  `student_UnivID` int(11) NOT NULL,
+  `student_UnivID` int NOT NULL,
   `account` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  PRIMARY KEY (`StdID`),
+  PRIMARY KEY (`StdID`,`account`),
   KEY `fk_student_univ1_idx` (`student_UnivID`),
   CONSTRAINT `fk_student_univ1` FOREIGN KEY (`student_UnivID`) REFERENCES `univ` (`UnivID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -336,6 +336,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (20170230,'홍길동',2017,'spring','bachelor','M',20,'EE','sports','hongildong@gmail.com','01033334444','blahblah',2,'hong1234','asdf'),(20170240,'박기범',2017,'spring','bachelor','M',20,'IE','machine learning','pgb1227@kaist.ac.kr','01039595928','blah blah. it is time consuming doing this',1,'pgb1227','rlqja5928');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,11 +348,11 @@ DROP TABLE IF EXISTS `univ`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `univ` (
-  `UnivID` int(11) NOT NULL AUTO_INCREMENT,
+  `UnivID` int NOT NULL AUTO_INCREMENT,
   `UnivName` varchar(45) NOT NULL,
   `Location` varchar(100) NOT NULL,
   PRIMARY KEY (`UnivID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -360,6 +361,7 @@ CREATE TABLE `univ` (
 
 LOCK TABLES `univ` WRITE;
 /*!40000 ALTER TABLE `univ` DISABLE KEYS */;
+INSERT INTO `univ` VALUES (1,'KAIST','Daejeon'),(2,'SNU','Seoul'),(3,'POSTECH','Pohang');
 /*!40000 ALTER TABLE `univ` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -372,4 +374,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-25 23:46:54
+-- Dump completed on 2020-11-27 10:31:18
