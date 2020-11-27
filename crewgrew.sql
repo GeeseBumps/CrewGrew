@@ -91,12 +91,12 @@ CREATE TABLE `club` (
   `EstYear` varchar(45) NOT NULL,
   `Field` varchar(45) NOT NULL,
   `Introduce` varchar(150) NOT NULL,
-  `form_FormID` int NOT NULL,
+  `form_FormID` int DEFAULT NULL,
   `club_UnivID` int NOT NULL,
   PRIMARY KEY (`ClubID`),
   KEY `fk_club_univ1_idx` (`club_UnivID`),
   CONSTRAINT `fk_club_univ1` FOREIGN KEY (`club_UnivID`) REFERENCES `univ` (`UnivID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,6 +105,7 @@ CREATE TABLE `club` (
 
 LOCK TABLES `club` WRITE;
 /*!40000 ALTER TABLE `club` DISABLE KEYS */;
+INSERT INTO `club` VALUES (1,'디딤돌',NULL,'1987','society','디딤돌은 카이스트 봉사동아리입니다.',NULL,1);
 /*!40000 ALTER TABLE `club` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,17 +181,17 @@ DROP TABLE IF EXISTS `form`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `form` (
-  `FormID` int NOT NULL,
+  `FormID` int NOT NULL AUTO_INCREMENT,
   `Q1` varchar(200) NOT NULL,
   `Q2` varchar(200) NOT NULL,
   `Q3` varchar(200) NOT NULL,
   `Q4` varchar(200) DEFAULT NULL,
   `Q5` varchar(200) DEFAULT NULL,
   `form_ClubID` int NOT NULL,
-  PRIMARY KEY (`FormID`),
+  PRIMARY KEY (`FormID`,`form_ClubID`),
   KEY `fk_form_club1_idx` (`form_ClubID`),
   CONSTRAINT `fk_form_club1` FOREIGN KEY (`form_ClubID`) REFERENCES `club` (`ClubID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,6 +200,7 @@ CREATE TABLE `form` (
 
 LOCK TABLES `form` WRITE;
 /*!40000 ALTER TABLE `form` DISABLE KEYS */;
+INSERT INTO `form` VALUES (1,'자신의 장점을 서술하시오','자신의 단점을 서술하시오','봉사활동 이력을 서술하시오','','',1);
 /*!40000 ALTER TABLE `form` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,8 +217,8 @@ CREATE TABLE `memberlist` (
   `Position` varchar(45) NOT NULL,
   `RegistrationYear` varchar(45) NOT NULL,
   `RegistrationSemester` varchar(45) NOT NULL,
-  `Active` varchar(45) NOT NULL,
-  `application_ApplyID` int NOT NULL,
+  `isActive` varchar(45) NOT NULL,
+  `application_ApplyID` int DEFAULT NULL,
   PRIMARY KEY (`memberlist_ClubID`,`memberlist_StdID`),
   KEY `fk_club_has_student_student1_idx` (`memberlist_StdID`),
   KEY `fk_club_has_student_club_idx` (`memberlist_ClubID`),
@@ -233,6 +235,7 @@ CREATE TABLE `memberlist` (
 
 LOCK TABLES `memberlist` WRITE;
 /*!40000 ALTER TABLE `memberlist` DISABLE KEYS */;
+INSERT INTO `memberlist` VALUES (1,20170240,'president','2017','spring','Y',NULL);
 /*!40000 ALTER TABLE `memberlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,4 +377,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-27 10:31:18
+-- Dump completed on 2020-11-27 20:35:17
