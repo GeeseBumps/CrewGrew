@@ -37,7 +37,7 @@ if ($row1['Position'] !='president'){
 else{
 	$ClubID=$row1['memberlist_ClubID'];
 }
-$sql2="select club_UnivID,form_FormID from club where ClubID=$ClubID";
+$sql2="select club_UnivID,FormID from club,form where club.ClubID=$ClubID and form.form_ClubID=$ClubID";
 $ret2 = mysqli_query($con, $sql2);
 
 if ($ret2==false){
@@ -47,7 +47,8 @@ else{
 	$row2=mysqli_fetch_array($ret2);
 }
 $UnivID=$row2['club_UnivID'];
-$FormID=$row2['form_FormID'];
+$FormID=$row2['FormID'];
+echo $FormID;
 
 
 
