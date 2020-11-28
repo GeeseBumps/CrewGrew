@@ -28,7 +28,7 @@
 	
 	echo "<HTML>";
 	echo "<BODY align='center'>";
-	echo "<H2> &nbsp; modifying customer information </H2>";
+	echo "<H2> &nbsp; 동아리 홍보 페이지</H2>";
 
 	echo "<table align='center' border=1 width = '400'  >";
 	echo "<TR>";
