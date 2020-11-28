@@ -24,6 +24,9 @@
 	$PostContent=$row['PostContent'];
 	$PostImg=$row['PostImg'];
 	$pp_ClubID=$row['pp_ClubID'];
+	$sql1="select ClubName from club where ClubID='$pp_ClubID'";
+	$club_name=mysqli_fetch_array(mysqli_query($con,$sql1))['ClubName'];
+	
 	
 	
 	echo "<HTML>";
@@ -41,8 +44,11 @@
 	echo "</tr>";
 	echo "</table>";
 	echo "<br>";
-	echo "<button type='button' onclick='location.href='동아리신청 공간' '>지금 신청하기</button></br>";
-	echo "<button type='button' onclick='location.href='메인 페이지' '>뒤로 가기</button></br>";
+	echo "<FORM METHOD='POST'  ACTION='apply.php'>";	
+	echo "<input type='hidden' name='clubname' VALUE='$club_name'></input><Br>";
+	echo "<input type='submit' value='동아리 지원하기'>";
+	echo "</form>";
+	echo "<button type=".'"button" onclick='.'"location.href='."'all_post_page.php'".' "'.">뒤로 가기</button></br>";
 	echo "<br>";
 	echo "<FORM METHOD='POST'  ACTION='post_comment.php'>";	
 	echo "<input type='text' name='Content' VALUE='댓글을 적어주세요'  maxlength='20'></input><br>";
