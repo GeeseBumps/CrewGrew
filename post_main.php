@@ -4,10 +4,8 @@
 	$idx='PPID';
 	$PPID=$_POST[$idx];
 	
-	$servername = "localhost:3306";
-	$username = "root";
-	$password = "1234";	
-	$dbname = "clubmangement";
+	include 'db_info.php';
+
 	$con = mysqli_connect($servername, $username, $password, $dbname) or die("MySQL Connection failed!!");
 	$sql ="select * from promotion_post WHERE PPID = 1";
 	
