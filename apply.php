@@ -12,7 +12,7 @@ if(mysqli_num_rows($result)==1) {
     $row=mysqli_fetch_assoc($result);
     $clubid = $row['ClubID'];
     $_SESSION['clubid'] = $clubid;
-    $query = "select * from form where form_ClubID='$clubid'";
+    $query = "select * from form where form_ClubID='$clubid';";
     $result = $connect->query($query);
     if(mysqli_num_rows($result)==1){
     	$row=mysqli_fetch_assoc($result);
