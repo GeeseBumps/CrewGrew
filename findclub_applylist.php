@@ -9,13 +9,13 @@ $id = $_SESSION['userid'];
 <head>
     <style>
       .a {
-        border: 1px solid #444444;
+        border: 0px solid #444444;
         width: 500px;
         padding: 100px 0px;
       }
       .b {
-        border: 1px solid #444444;
-        background-color: #444444;
+        border: 0px solid #444444;
+        background-color: 'white';
       }
       h1 {
         text-align: center;

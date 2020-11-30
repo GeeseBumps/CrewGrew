@@ -24,7 +24,7 @@ if(mysqli_num_rows($result)==1) {
 	    $result = $connect->query($query);
 	    if(mysqli_num_rows($result)==1){
 	    	$row1=mysqli_fetch_assoc($result);
-			$sql = "SELECT * FROM application WHERE application_ClubID='$clubid';";
+			$sql = "SELECT * FROM application WHERE application_ClubID='$clubid' ORDER BY ApplyDate DESC;";
 			$result = mysqli_query($connect, $sql);
 			echo "<style>td { border:1px solid #ccc; padding:5px; }</style>";
 			echo "<table><tbody>";
@@ -70,4 +70,39 @@ else{
 <?php  
 }
 ?>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      .a {
+        border: 0px ;
+        width: 500px;
+        padding: 100px 0px;
+      }
+      .b {
+        border: 0px ;
+        background-color: 'white';
+      }
+      h1 {
+        text-align: center;
+        color: #ffffff;
+      }
+    </style>
+</head>
+<body>
+<div class="a">
+  <div class="b">
+  <form action="findstudent_info.php" method='post'>
+	 <table bgcolor="white">
+	 <tr>
+	 	<td colspan="2">&nbsp;Search student you want to see more information by Student ID!</td>
+	 </tr>
+	 <tr bgcolor="white">
+	   <td><input type="text" name="stdid" maxlength="20" size='20' style="width:320"></td>
+	   <td><center><input type="submit" name="" value="Search"></center></td>
+	 </tr>
+	 </table>
+	</form>
+  </div>
+</div>
+</body>
