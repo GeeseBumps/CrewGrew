@@ -4,14 +4,16 @@ $connect = mysqli_connect($servername, $username, $password, $dbname) or die("My
 
 session_start();
 
-if(isset($_SESSION['userid'])) {
-        echo $_SESSION['userid'];?>님 안녕하세요
-        <br/>
-        <script>location.replace("./mainpage.php");</script>
+if(isset($_SESSION['userid'])) { 
+?>
+<br/>
+<script>location.replace("./mainpage.php");</script>
 <?php
 }
 else {
-?>              <button onclick="location.href='./login.php'">로그인</button>
+?>              
+<button onclick="location.href='./login.php'">로그인</button>
+<button onclick="location.href='./register.php'">회원가입</button>
         <br />
 <?php   }
 ?>

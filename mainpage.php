@@ -1,6 +1,8 @@
 <?php 
 session_start();
+echo "안녕하세요 ".$_SESSION['userid']."님";
  ?>
+<button onclick="location.href='./login.php'">로그아웃</button>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +10,6 @@ session_start();
 </head>
 <body>
 <h1>Main Page</h1>
-
-안녕하세요
-<?php 
-echo $_SESSION['userid'];
- ?> 님
-
+여기서부터 코딩을 해주시기 바랍니다!
 </body>
 </html>
