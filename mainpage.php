@@ -10,6 +10,6 @@ echo "안녕하세요 ".$_SESSION['userid']."님";
 </head>
 <body>
 <h1>Main Page</h1>
-여기서부터 코딩을 해주시기 바랍니다!
+
 </body>
 </html>

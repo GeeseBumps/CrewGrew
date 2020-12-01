@@ -33,7 +33,7 @@ if(mysqli_num_rows($result)==1) {
             ?>
             <script>
                 alert("동아리 신청서 양식이 수정되었습니다.");
-                location.replace("./mainpage.php");
+                location.replace("./all_post_page.php");
             </script>
 			<?php
 			}
@@ -46,7 +46,7 @@ if(mysqli_num_rows($result)==1) {
 			?>
 			<script>
 			    alert("동아리 신청서 양식이 신규 등록되었습니다.");
-			    location.replace("./mainpage.php");
+			    location.replace("./all_post_page.php");
 			</script>
 			<?php   
 			}

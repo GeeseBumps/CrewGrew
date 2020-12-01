@@ -7,7 +7,7 @@ session_start();
 if(isset($_SESSION['userid'])) { 
 ?>
 <br/>
-<script>location.replace("./mainpage.php");</script>
+<script>location.replace("./main.html");</script>
 <?php
 }
 else {

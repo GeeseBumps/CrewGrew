@@ -29,7 +29,7 @@ if(mysqli_num_rows($result)==0) {
  ?>
 <script>
     alert("지원이 성공적으로 완료되었습니다!");
-    location.replace("./mainpage.php");
+    location.replace("./all_post_page.php");
 </script>
 <?php }
     else{
@@ -45,7 +45,7 @@ else{
 ?>
 <script>
     alert("이미 지원한 신청서가 존재합니다.");
-    history.back();
+    location.replace("./all_post_page.php");
 </script>
 <?php
 }

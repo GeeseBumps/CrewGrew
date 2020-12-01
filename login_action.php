@@ -17,7 +17,7 @@ if(mysqli_num_rows($result)==1) {
                 if(isset($_SESSION['userid'])){
                 ?>      <script>
                                 alert("로그인 되었습니다.");
-                                location.replace("./mainpage.php");
+                                location.replace("./main.html");
                         </script>
 <?php
     }
