@@ -7,7 +7,7 @@
 	include 'db_info.php';
 
 	$con = mysqli_connect($servername, $username, $password, $dbname) or die("MySQL Connection failed!!");
-	$sql ="select * from promotion_post WHERE PPID = 1";
+	$sql ="select * from promotion_post WHERE PPID = $PPID";
 	
 
 	$ret = mysqli_query($con, $sql);

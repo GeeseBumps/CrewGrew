@@ -151,7 +151,7 @@ DROP TABLE IF EXISTS `cpcomment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cpcomment` (
-  `CCID` int NOT NULL,
+  `CCID` int NOT NULL AUTO_INCREMENT,
   `Content` varchar(45) NOT NULL,
   `Date` varchar(45) NOT NULL,
   `cpcomment_ClubID` int NOT NULL,
