@@ -20,11 +20,14 @@
 	$ret = mysqli_query($con, $sql);
 
 	if ($ret==false){
-		echo "<H2> &nbsp; 관리하고 있는 동아리가 없습니다 </H2>";
+		'<script type="text/javascript">alert("권한이 없습니다 "); history.back(-1)</script>';
 	}
 	else{
 		$row=mysqli_fetch_array($ret);
-		
+		$count = mysqli_num_rows($ret);
+		if ($count==0) {
+			echo '<script type="text/javascript">alert("권한이 없습니다."); history.back(-1)</script>';		   	
+		}
 		$clubid=$row['memberlist_ClubID'];
 		
 	
@@ -60,7 +63,8 @@
 		echo "<button type=".'"button" onclick='.'"location.href='."'member_search.php'".' "'.">팀원 검색</button>";
 		echo "<button type=".'"button" onclick='.'"location.href='."'member_enroll.php'".' "'.">팀원 등록</button>";
 		echo "<button type=".'"button" onclick='.'"location.href='."'findclub_applylist.php'".' "'.">지원 현황</button>";
-		
+		echo "<button type=".'"button" onclick='.'"location.href='."'applyform.php'".' "'.">지원서 등록</button>";
+
 		
 	}
 	echo "</body>";

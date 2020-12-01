@@ -39,7 +39,27 @@
 	echo "</tr>";
 	echo "</table>";
 	echo "<br>";	
-
+	$sql1="select Content,Date,cpcomment_StdID from cpcomment where cpcomment_CPID=$CPID ORDER BY Date DESC";
+	$ret1=mysqli_query($con, $sql1);
+	if($ret1) {	   
+	   $count = mysqli_num_rows($ret1);	   
+   }
+	echo "<TABLE align='center' border=1 width = '400'>";
+	echo "<TR>";
+	echo "<TH>DATE</TH><TH>ID</TH><TH>content</TH>";   
+	echo "</TR>";
+	while ($row = mysqli_fetch_array($ret1)){
+		
+		echo "<TD>", $row['Date'], "</TD>";
+		echo "<TD>", $row['cpcomment_StdID'], "</TD>";
+		echo "<TD>", $row['Content'], "</TD>";
+		echo "</TR>";	
+		echo "</TR>";	
+   }
+   echo "</Table>";
+   
+   echo "<BR>";
+   
 	echo "<button type=".'"button" onclick='.'"location.href='."'club_page_main.php'".' "'.">뒤로 가기</button></br>";
 	echo "<br>";
 	echo "<FORM METHOD='POST'  ACTION='club_post_comment.php'>";	

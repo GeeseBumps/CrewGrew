@@ -42,6 +42,24 @@
 	echo "</tr>";
 	echo "</table>";
 	echo "<br>";
+	$sql2="select Content,Date,ppcomment_StdID from ppcomment where ppcomment_PPID=$PPID ORDER BY Date DESC";
+	$ret2=mysqli_query($con, $sql2);
+	if($ret2) {	   
+	   $count = mysqli_num_rows($ret2);	   
+   }
+	echo "<TABLE align= 'center' border=1 width = '400'>";
+	echo "<TR>";
+	echo "<TH>DATE</TH><TH>ID</TH><TH>content</TH>";   
+	echo "</TR>";
+	while ($row2= mysqli_fetch_array($ret2)){
+		
+		echo "<TD>", $row2['Date'], "</TD>";
+		echo "<TD>", $row2['ppcomment_StdID'], "</TD>";
+		echo "<TD>", $row2['Content'], "</TD>";
+		echo "</TR>";	
+		echo "</TR>";	
+   }
+	echo "</Table>";
 	echo "<FORM METHOD='POST'  ACTION='apply.php'>";	
 	echo "<input type='hidden' name='clubname' VALUE='$club_name'></input><Br>";
 	echo "<input type='submit' value='동아리 지원하기'>";

@@ -20,23 +20,11 @@
 		die("DB is failed");
 	
 	}
-	$sql1="select Content,Date,ppcomment_StdID from ppcomment where ppcomment_PPID=$PPID ORDER BY Date DESC";
-	$ret1=mysqli_query($con, $sql1);
-	if($ret1) {	   
-	   $count = mysqli_num_rows($ret1);	   
-   }
-	echo "<TABLE border=1 width = '400'>";
-	echo "<TR>";
-	echo "<TH>DATE</TH><TH>ID</TH><TH>content</TH>";   
-	echo "</TR>";
-	while ($row = mysqli_fetch_array($ret1)){
-		
-		echo "<TD>", $row['Date'], "</TD>";
-		echo "<TD>", $row['ppcomment_StdID'], "</TD>";
-		echo "<TD>", $row['Content'], "</TD>";
-		echo "</TR>";	
-		echo "</TR>";	
-   }
-   echo "</Table>";
+
 
 ?>
+	<script>
+		alert("등록되었습니다");
+		history.back();
+	</script>
+	
