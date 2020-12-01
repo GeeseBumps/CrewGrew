@@ -57,7 +57,7 @@ echo $FormID;
 <title>make Post</title>
 </head>
 <body>
-<h2> Register Your Club Apply Form </h2>
+<h2> Register club post </h2>
 <form action="club_post_action.php" method="post">
 <input type="hidden" name='ClubID' value=<?php echo $ClubID ?>>
 <input type="hidden" name='UnivID' value=<?php echo $UnivID ?>>

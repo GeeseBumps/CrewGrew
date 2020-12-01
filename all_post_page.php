@@ -11,6 +11,7 @@
 		die("DB is failed");
 	}
 	
+	
 	echo "<html>";
 	echo "<head>";
 	echo "</head>";
@@ -23,8 +24,12 @@
 	echo "</TR>";
 	while ($row = mysqli_fetch_array($ret)){
 		echo "<TR>";
+		$ClubID=$row['pp_ClubID'];
+		$sql1="select ClubName from club where ClubID= $ClubID;";
+		$ret1 = mysqli_query($con, $sql1);
+		$row1 = mysqli_fetch_array($ret1);
 		echo "<TD>", $row['PostDate'], "</TD>";
-		echo "<TD>", $row['PostTitle'], "</TD>";
+		echo "<TD>", $row1['ClubName'], "</TD>";
 		echo "<FORM METHOD='POST' ACTION='post_main.php'>";
 		echo "<input type='hidden' name='PPID' VALUE=$row[PPID]></input>";
 		echo "<TD>","<input type='submit' value='지원 클릭'>","</TD>";
