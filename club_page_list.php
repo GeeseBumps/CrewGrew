@@ -5,7 +5,11 @@
 	session_start();
 
 	$userid = $_SESSION['userid'];
-
+	if (empty($userid)){
+		echo '<script type="text/javascript">alert("로그인을 해주세요"); history.back(-1)</script>';
+		error_reporting(0); 
+	}
+	
 	echo 'user: ';
 	echo $userid;
 	include 'db_info.php';
