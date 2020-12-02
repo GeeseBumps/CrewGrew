@@ -3,8 +3,7 @@ session_start();
 
 $userid = $_SESSION['userid'];
 
-echo 'user: ';
-echo $userid;
+
 include 'db_info.php';
 $sql="select StdID from student where account='$userid'";
 
@@ -20,23 +19,28 @@ $StdID=$row['StdID'];
 $sql1="select memberlist_ClubID,Position from memberlist where memberlist_StdID=$StdID";
 $ret1 = mysqli_query($con, $sql1);
 if ($ret1==false){
-	'<script type="text/javascript">alert("당신이 속한 동아리가 존재 하지 않습니다"); history.back(-1)</script>';
+	echo  '<script type="text/javascript">alert("당신이 속한 동아리가 존재 하지 않습니다"); history.back(-1)</script>';
 }
 else{
 	$count = mysqli_num_rows($ret1);
 	if ($count==0) {
-	   echo '<script type="text/javascript">alert("당신이 속한 동아리가 존재 하지 않습니다"); history.back(-1)</script>';		   	
+	   echo '<script type="text/javascript">alert("당신이 속한 동아리가 존재 하지 않습니다"); history.back(-1)</script>';
+		
 	}
-	$row1=mysqli_fetch_array($ret1);
+	
+	else{
+		$row1=mysqli_fetch_array($ret1);
+		if ($row1['Position'] !='president'){
+			echo '<script type="text/javascript">alert("포스트 작성 권한이 없습니다. "); history.back(-1)</script>';
+		}
+	}
 }
 
 
-if ($row1['Position'] !='president'){
-	echo '<script type="text/javascript">alert("포스트 작성 권한이 없습니다. "); history.back(-1)</script>';
-}
-else{
-	$ClubID=$row1['memberlist_ClubID'];
-}
+
+
+$ClubID=$row1['memberlist_ClubID'];
+
 $sql2="select club_UnivID,FormID from club,form where club.ClubID=$ClubID and form.form_ClubID=$ClubID";
 $ret2 = mysqli_query($con, $sql2);
 
